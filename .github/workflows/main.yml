@@ -46,3 +46,10 @@ jobs:
         with:
           name: ${{ env.PROJECT_NAME }}
           path: build/WebGL
+      - uses: manleydev/butler-publish-itchio-action@master
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+          CHANNEL: html5
+          ITCH_GAME: ${{ secrets.ITCH_GAME }}
+          ITCH_USER: ${{ secrets.ITCH_USER }}
+          PACKAGE: build/WebGL/${{ env.PROJECT_NAME }}
