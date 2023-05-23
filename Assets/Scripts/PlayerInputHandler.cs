@@ -3,12 +3,12 @@ using UnityEngine;
 public class PlayerInputHandler : MonoBehaviour
 {
     [SerializeField] private SimpleAnimationSO animationIdle;
-    private Mover mover;
+    private ActionHandler actionHandler;
     private bool inProgress;
     
     private void Awake()
     {
-        mover = GetComponent<Mover>();
+        actionHandler = GetComponent<ActionHandler>();
     }
     private void Update() {
         if(inProgress) return;
@@ -16,14 +16,13 @@ public class PlayerInputHandler : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.D))
         {
             inProgress = true;
-            mover.Move(true, Idle);
+            var action = actionHandler.GetMoveAction();
+            action.ExecuteAction(Idle);
             GetComponent<CharacterRotationHandler>().RotateToDirection(true);
         }
         else if(Input.GetKeyDown(KeyCode.A))
         {
-            inProgress = true;
-            mover.Move(false, () => Idle());
-            GetComponent<CharacterRotationHandler>().RotateToDirection(false);
+            
         }
     }
     private void Idle()
