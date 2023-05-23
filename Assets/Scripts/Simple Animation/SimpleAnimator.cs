@@ -32,10 +32,10 @@ public class SimpleAnimator : MonoBehaviour
         coroutine = StartCoroutine(SwitchFrameCoroutine());
     } 
     private IEnumerator SwitchFrameCoroutine()
-    {
-        
+    {        
         while (true)
         {
+            yield return wait;
             if(actualAnimation.frameTrigger == currentFrame) onAnimationTrigger?.Invoke();
             if(!actualAnimation.isLoopable && currentFrame == actualAnimation.frameArray.Length - 1) 
             {
@@ -43,7 +43,7 @@ public class SimpleAnimator : MonoBehaviour
                 yield break;
             }            
             SwitchFrame();
-            yield return wait;
+            
         }        
     }
     private void SwitchFrame()
@@ -52,11 +52,11 @@ public class SimpleAnimator : MonoBehaviour
         spriteRenderer.sprite = actualAnimation.frameArray[currentFrame];
     }
 
-    public void SetAnimation(SimpleAnimationSO simpleAnimation, Action onTriggerAction = null)
+    public void SetAnimation(SimpleAnimationSO simpleAnimation, Action onTriggerAction = null, Action onAnimationEnd = null)
     {        
         if(actualAnimation == simpleAnimation) return;
-        onAnimationEnd = null;
-        onAnimationTrigger = null;
+        this.onAnimationEnd = onAnimationEnd;
+        this.onAnimationTrigger = onTriggerAction;
         actualAnimation = simpleAnimation;
         SetWait();
         currentFrame = 0;
@@ -64,7 +64,7 @@ public class SimpleAnimator : MonoBehaviour
         {
             onAnimationTrigger = onTriggerAction;
         }
-        StopCoroutine(coroutine);
+        if(coroutine != null) StopCoroutine(coroutine);
         coroutine = StartCoroutine(SwitchFrameCoroutine());
         spriteRenderer.sprite = actualAnimation.frameArray[currentFrame];
     }

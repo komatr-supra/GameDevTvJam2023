@@ -22,7 +22,10 @@ public class PlayerInputHandler : MonoBehaviour
         }
         else if(Input.GetKeyDown(KeyCode.A))
         {
-            
+            inProgress = true;
+            var action = actionHandler.GetMoveAction();
+            action.ExecuteAction(Idle, false);
+            GetComponent<CharacterRotationHandler>().RotateToDirection(false);
         }
     }
     private void Idle()

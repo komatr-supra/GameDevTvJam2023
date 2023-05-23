@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7361360622795032129
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7361360622795032135}
+  - component: {fileID: 7361360622795032128}
+  m_Layer: 0
+  m_Name: VFX Creator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7361360622795032135
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7361360622795032129}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7361360622795032128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7361360622795032129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac87d93fa722fda47adf0c272c3b035a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectPrefab: {fileID: 3492755314188087174, guid: 78e85b4abbbec334c8b979cf9906ff4b, type: 3}
+  bloodEfects:
+  - {fileID: 11400000, guid: dc9e4065f8f22ab40b3468fa7ca84135, type: 2}
+  explosionsEffects:
+  - {fileID: 11400000, guid: 30ee267e7f6c3bd43b891cd5140597e4, type: 2}
+  slashEffects:
+  - {fileID: 11400000, guid: dc9f7a83d3b720a44af18312bbdd3ca9, type: 2}
+  multislashEffects:
+  - {fileID: 11400000, guid: 1bc06b42eccfe6040b1ba7cc20a96806, type: 2}

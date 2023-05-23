@@ -41,7 +41,9 @@ public class MusicPlayer : MonoBehaviour
     private void PlayRandomMusic()
     {
         var newAudioClips = isLightDimension ? lightAudios : darkAudios;
-        audioSource.PlayOneShot(newAudioClips[Random.Range(0, newAudioClips.Length)], OptionSave.Instance.MusicVolume);
+        var audio = newAudioClips[Random.Range(0, newAudioClips.Length)];
+        Debug.Log(audio);
+        audioSource.PlayOneShot(audio, OptionSave.Instance.MusicVolume);
     }
     private void MusicVolumeChanged_OptionSave(float volume)
     {

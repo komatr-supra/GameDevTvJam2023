@@ -7,9 +7,9 @@ using UnityEngine;
 public class OptionSave : MonoBehaviour
 {
     public static OptionSave Instance;
-    private float volomeSFX;
+    private float volomeSFX = 1;
     public float VolumeSF => volomeSFX;
-    private float musicVolume;
+    private float musicVolume = 1;
     public float MusicVolume => musicVolume;
     public Action<float> onMusicVolumeChanged;
     public Action<float> onSFXVolumeChanged;
