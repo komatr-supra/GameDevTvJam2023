@@ -14,7 +14,7 @@ public class SimpleAnimator : MonoBehaviour
     private SimpleAnimationSO actualAnimation;
     private int currentFrame;
     private Coroutine coroutine;
-
+    WaitForSeconds wait;
     private void Awake()
     {
         Init();
@@ -28,16 +28,12 @@ public class SimpleAnimator : MonoBehaviour
     private void Start() 
     {
         if(actualAnimation == null) return;
-        coroutine = StartCoroutine(SwitchFrameCoroutine(actualAnimation.framesPerSecond));
-    }    
-    public float GetAnimationTime()
+        SetWait();
+        coroutine = StartCoroutine(SwitchFrameCoroutine());
+    } 
+    private IEnumerator SwitchFrameCoroutine()
     {
-        return 1f / actualAnimation.framesPerSecond * actualAnimation.frameArray.Length;
-    }
-    private IEnumerator SwitchFrameCoroutine(int fps)
-    {
-        float changingTime = 1f / fps;
-        var wait = new WaitForSeconds(changingTime);
+        
         while (true)
         {
             if(actualAnimation.frameTrigger == currentFrame) onAnimationTrigger?.Invoke();
@@ -62,19 +58,25 @@ public class SimpleAnimator : MonoBehaviour
         onAnimationEnd = null;
         onAnimationTrigger = null;
         actualAnimation = simpleAnimation;
+        SetWait();
         currentFrame = 0;
         if(onTriggerAction != null)
         {
             onAnimationTrigger = onTriggerAction;
         }
-        if(coroutine == null) coroutine = StartCoroutine(SwitchFrameCoroutine(actualAnimation.framesPerSecond));
+        StopCoroutine(coroutine);
+        coroutine = StartCoroutine(SwitchFrameCoroutine());
         spriteRenderer.sprite = actualAnimation.frameArray[currentFrame];
     }
     public void ResetCurrentAnimation()
     {
         currentFrame = 0;
         StopCoroutine(coroutine);
-        coroutine = StartCoroutine(SwitchFrameCoroutine(actualAnimation.framesPerSecond));
+        coroutine = StartCoroutine(SwitchFrameCoroutine());
         
+    }
+    private void SetWait()
+    {
+        wait = new WaitForSeconds(1f / actualAnimation.framesPerSecond);
     }
 }

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1edb222d27bb4024faa23140f979e822, type: 3}
+  m_Name: MoveAnimationPlayer
+  m_EditorClassIdentifier: 
+  frameArray:
+  - {fileID: 1535026067, guid: 582780420460baa4a91aba9e1194559d, type: 3}
+  - {fileID: -2006701030, guid: 582780420460baa4a91aba9e1194559d, type: 3}
+  - {fileID: 1658881191, guid: 582780420460baa4a91aba9e1194559d, type: 3}
+  - {fileID: 2052646772, guid: 582780420460baa4a91aba9e1194559d, type: 3}
+  framesPerSecond: 10
+  isLoopable: 1
+  frameTrigger: -1
