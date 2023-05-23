@@ -1,7 +1,9 @@
 name: Build and deploy
 
-on: [push, pull_request]
-
+on:
+  push:
+    branches:
+      - main
 env:
   PROJECT_NAME: GameDevTvGameJam2023
 
