@@ -10,4 +10,6 @@ public class AttackConfiguration : ScriptableObject
     public int damage = 1;
     public float attackRadius = 1f;
     public int turnRecovery = 1;
+    public SimpleAnimationSO aniation;
+    public GameObject projectilePrefab;
 }

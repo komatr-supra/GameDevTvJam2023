@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1edb222d27bb4024faa23140f979e822, type: 3}
+  m_Name: ShootAnimation
+  m_EditorClassIdentifier: 
+  frameArray:
+  - {fileID: -1761250622, guid: 582780420460baa4a91aba9e1194559d, type: 3}
+  - {fileID: 277742714, guid: 582780420460baa4a91aba9e1194559d, type: 3}
+  - {fileID: 729938055, guid: 582780420460baa4a91aba9e1194559d, type: 3}
+  - {fileID: 1778412299, guid: 582780420460baa4a91aba9e1194559d, type: 3}
+  - {fileID: 1163678468, guid: 582780420460baa4a91aba9e1194559d, type: 3}
+  framesPerSecond: 8
+  isLoopable: 0
+  frameTrigger: 2

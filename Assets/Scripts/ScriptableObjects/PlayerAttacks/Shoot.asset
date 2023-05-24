@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55cc37f3a82cd45ea9bb4af5f9f68ef3, type: 3}
+  m_Name: Shoot
+  m_EditorClassIdentifier: 
+  isAvailable: 1
+  isRanged: 1
+  damage: 1
+  attackRadius: 5
+  turnRecovery: 1
+  aniation: {fileID: 11400000, guid: bcc003e0ed387f94283513f33b7dcf64, type: 2}
+  projectilePrefab: {fileID: 699513803399393359, guid: b9b40e98af67de54da59e3307558de6b, type: 3}

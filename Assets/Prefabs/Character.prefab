@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 6716215010660212271}
   - component: {fileID: 6716215010660212268}
-  - component: {fileID: 6716215010660212269}
   - component: {fileID: 6716215010660212266}
   - component: {fileID: 6716215010660212270}
   - component: {fileID: 6767576903386541405}
   - component: {fileID: 7573063452693712162}
   - component: {fileID: 5124275539996336177}
+  - component: {fileID: 2796532266638944227}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -53,19 +53,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idleAnimation: {fileID: 11400000, guid: 0d1f52445691d1e49afbe4537f126fe5, type: 2}
   spriteRenderer: {fileID: 6716215010839852297}
---- !u!114 &6716215010660212269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6716215010660212267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20685e16f4eb8eb49b5c8465c6fa1894, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animationMove: {fileID: 11400000, guid: 6017fd7932623ee4d8e242a37297d2e2, type: 2}
 --- !u!114 &6716215010660212266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,6 +66,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationIdle: {fileID: 11400000, guid: 0d1f52445691d1e49afbe4537f126fe5, type: 2}
+  attackConfiguration: {fileID: 0}
 --- !u!114 &6716215010660212270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,6 +92,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f703da02d447da47ad603cf442eec7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootConfig: {fileID: 0}
+  moveAnim: {fileID: 0}
+  idleAnim: {fileID: 0}
+  shootAnim: {fileID: 0}
+  actionPoints: 0
 --- !u!61 &7573063452693712162
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -117,7 +110,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.5}
+  m_Offset: {x: 0.009143636, y: 0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -128,7 +121,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.39652094, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &5124275539996336177
 MonoBehaviour:
@@ -143,12 +136,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
-  mana: 0
-  attack: 1
-  magic: 0
-  defense: 0
-  speed: 0
-  turnCounter: 0
+  movementDistance: 0
+  turnCount: 0
+--- !u!50 &2796532266638944227
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6716215010660212267}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &6716215010839852342
 GameObject:
   m_ObjectHideFlags: 0

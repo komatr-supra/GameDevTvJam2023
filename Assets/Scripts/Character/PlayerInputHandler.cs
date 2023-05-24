@@ -3,8 +3,8 @@ using UnityEngine;
 public class PlayerInputHandler : MonoBehaviour
 {
     [SerializeField] private SimpleAnimationSO animationIdle;
+    [SerializeField] private AttackConfiguration attackConfiguration;
     private ActionHandler actionHandler;
-    private bool inProgress;
 
     private void Awake()
     {
@@ -12,26 +12,24 @@ public class PlayerInputHandler : MonoBehaviour
     }
     private void Update()
     {
-        if (inProgress) return;
 
         if (Input.GetKeyDown(KeyCode.D))
         {
-            inProgress = true;
             var action = actionHandler.GetMoveAction();
-            action.ExecuteAction(Idle);
+            if(!actionHandler.TryPerformAction(action)) return;
             GetComponent<CharacterRotationHandler>().RotateToDirection(true);
         }
         else if (Input.GetKeyDown(KeyCode.A))
         {
-            inProgress = true;
             var action = actionHandler.GetMoveAction();
-            action.ExecuteAction(Idle, false);
+            if(!actionHandler.TryPerformAction(action, false)) return;
             GetComponent<CharacterRotationHandler>().RotateToDirection(false);
         }
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            var action = actionHandler.GetAttackAction(attackConfiguration);
+            actionHandler.TryPerformAction(action);
+        }
     }
-    private void Idle()
-    {
-        inProgress = false;
-        GetComponent<SimpleAnimator>().SetAnimation(animationIdle);
-    }
+    
 }
