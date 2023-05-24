@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1efad541ff81f4dd2830c526339edb5c, type: 3}
+  m_Script: {fileID: 11500000, guid: 55cc37f3a82cd45ea9bb4af5f9f68ef3, type: 3}
   m_Name: SwordAttack
   m_EditorClassIdentifier: 
+  isAvailable: 1
   isRanged: 0
   damage: 1
   attackRadius: 1
-  turnRecovery: 3
+  turnRecovery: 1

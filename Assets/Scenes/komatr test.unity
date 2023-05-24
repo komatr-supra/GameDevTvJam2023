@@ -358,6 +358,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5124275539996336177, guid: c2b18bbe86d56c74aafeb0f86fd5232f, type: 3}
+      propertyPath: turnCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5124275539996336177, guid: c2b18bbe86d56c74aafeb0f86fd5232f, type: 3}
+      propertyPath: movementDistance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6716215010660212267, guid: c2b18bbe86d56c74aafeb0f86fd5232f, type: 3}
       propertyPath: m_Name
       value: Character
