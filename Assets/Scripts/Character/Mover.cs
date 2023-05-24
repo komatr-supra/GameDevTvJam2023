@@ -20,5 +20,6 @@ public class Mover : MonoBehaviour, IActionable
         Vector3 endPosition = new Vector3(transform.position.x + addedDistance, transform.position.y, transform.position.z);
         transform.DOMove(endPosition, 1).SetEase(Ease.Linear).OnComplete(() => onFinished());
         GetComponent<SimpleAnimator>().SetAnimation(animationMove);
+        stats.turnCount++;
     }
 }

@@ -6,4 +6,5 @@ public class CharacterStats : MonoBehaviour
 {
     public float health;
     public float movementDistance;
+    public int turnCount;
 }
