@@ -12,7 +12,7 @@ public class MusicPlayer : MonoBehaviour
     private bool isLightDimension = true;
     private void Awake()
     {
-        if(Instance != null)
+        if (Instance != null)
         {
             Destroy(gameObject);
             return;
@@ -33,7 +33,7 @@ public class MusicPlayer : MonoBehaviour
     }
     private void Update()
     {
-        if(audioSource.isPlaying) return;
+        if (audioSource.isPlaying) return;
 
         //play new music based on environment
         PlayRandomMusic();
@@ -49,5 +49,5 @@ public class MusicPlayer : MonoBehaviour
     {
         audioSource.volume = volume;
     }
-    
+
 }

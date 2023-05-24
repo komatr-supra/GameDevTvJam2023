@@ -13,7 +13,7 @@ public class VFXCreator : MonoBehaviour
     public static VFXCreator Instance;
     private void Awake()
     {
-        if(Instance != null)
+        if (Instance != null)
         {
             Destroy(gameObject);
             return;
@@ -33,11 +33,11 @@ public class VFXCreator : MonoBehaviour
     {
         switch (effectType)
         {
-            case VFXType.blood : return bloodEfects;
-            case VFXType.explosion : return explosionsEffects;
-            case VFXType.slash : return slashEffects;
-            case VFXType.multislash : return multislashEffects;
-            default : return bloodEfects;
+            case VFXType.blood: return bloodEfects;
+            case VFXType.explosion: return explosionsEffects;
+            case VFXType.slash: return slashEffects;
+            case VFXType.multislash: return multislashEffects;
+            default: return bloodEfects;
         }
     }
 }

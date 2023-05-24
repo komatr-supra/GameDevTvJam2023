@@ -25,26 +25,26 @@ public class SimpleAnimator : MonoBehaviour
         //method is just as description, can be directly in awake        
         actualAnimation = idleAnimation;
     }
-    private void Start() 
+    private void Start()
     {
-        if(actualAnimation == null) return;
+        if (actualAnimation == null) return;
         SetWait();
         coroutine = StartCoroutine(SwitchFrameCoroutine());
-    } 
+    }
     private IEnumerator SwitchFrameCoroutine()
-    {        
+    {
         while (true)
         {
             yield return wait;
-            if(actualAnimation.frameTrigger == currentFrame) onAnimationTrigger?.Invoke();
-            if(!actualAnimation.isLoopable && currentFrame == actualAnimation.frameArray.Length - 1) 
+            if (actualAnimation.frameTrigger == currentFrame) onAnimationTrigger?.Invoke();
+            if (!actualAnimation.isLoopable && currentFrame == actualAnimation.frameArray.Length - 1)
             {
                 onAnimationEnd?.Invoke();
                 yield break;
-            }            
+            }
             SwitchFrame();
-            
-        }        
+
+        }
     }
     private void SwitchFrame()
     {
@@ -53,18 +53,18 @@ public class SimpleAnimator : MonoBehaviour
     }
 
     public void SetAnimation(SimpleAnimationSO simpleAnimation, Action onTriggerAction = null, Action onAnimationEnd = null)
-    {        
-        if(actualAnimation == simpleAnimation) return;
+    {
+        if (actualAnimation == simpleAnimation) return;
         this.onAnimationEnd = onAnimationEnd;
         this.onAnimationTrigger = onTriggerAction;
         actualAnimation = simpleAnimation;
         SetWait();
         currentFrame = 0;
-        if(onTriggerAction != null)
+        if (onTriggerAction != null)
         {
             onAnimationTrigger = onTriggerAction;
         }
-        if(coroutine != null) StopCoroutine(coroutine);
+        if (coroutine != null) StopCoroutine(coroutine);
         coroutine = StartCoroutine(SwitchFrameCoroutine());
         spriteRenderer.sprite = actualAnimation.frameArray[currentFrame];
     }
@@ -73,7 +73,7 @@ public class SimpleAnimator : MonoBehaviour
         currentFrame = 0;
         StopCoroutine(coroutine);
         coroutine = StartCoroutine(SwitchFrameCoroutine());
-        
+
     }
     private void SetWait()
     {

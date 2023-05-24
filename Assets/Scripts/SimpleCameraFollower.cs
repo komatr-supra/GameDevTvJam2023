@@ -8,8 +8,8 @@ public class SimpleCameraFollower : MonoBehaviour
     [SerializeField] private bool isFollowing;
     void LateUpdate()
     {
-        if(!isFollowing) return;
-        if(followedObject == null)
+        if (!isFollowing) return;
+        if (followedObject == null)
         {
             Debug.LogError("no object set to follow in " + this.name);
             isFollowing = false;

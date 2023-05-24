@@ -5,22 +5,23 @@ public class PlayerInputHandler : MonoBehaviour
     [SerializeField] private SimpleAnimationSO animationIdle;
     private ActionHandler actionHandler;
     private bool inProgress;
-    
+
     private void Awake()
     {
         actionHandler = GetComponent<ActionHandler>();
     }
-    private void Update() {
-        if(inProgress) return;
+    private void Update()
+    {
+        if (inProgress) return;
 
-        if(Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D))
         {
             inProgress = true;
             var action = actionHandler.GetMoveAction();
             action.ExecuteAction(Idle);
             GetComponent<CharacterRotationHandler>().RotateToDirection(true);
         }
-        else if(Input.GetKeyDown(KeyCode.A))
+        else if (Input.GetKeyDown(KeyCode.A))
         {
             inProgress = true;
             var action = actionHandler.GetMoveAction();

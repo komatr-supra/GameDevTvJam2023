@@ -21,7 +21,7 @@ public class ActionHandler : MonoBehaviour
     {
         foreach (var item in actions)
         {
-            if(item is Mover) return item;
+            if (item is Mover) return item;
         }
         return default;
     }

@@ -5,7 +5,7 @@ public class ChangeAudioVolume : MonoBehaviour
 {
     [SerializeField] private Slider sfxSlider;
     [SerializeField] private Slider musicSlider;
-    
+
     private void Start()
     {
         ChangeMusicVolume();

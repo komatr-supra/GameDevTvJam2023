@@ -15,7 +15,7 @@ public class OptionSave : MonoBehaviour
     public Action<float> onSFXVolumeChanged;
     private void Awake()
     {
-        if(Instance != null)
+        if (Instance != null)
         {
             Destroy(gameObject);
             return;
