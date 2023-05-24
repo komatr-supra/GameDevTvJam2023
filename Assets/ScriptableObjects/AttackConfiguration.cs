@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "AttackConfiguration", menuName = "ScriptableObjects/AttackConfiguration", order = 1)]
+[CreateAssetMenu(fileName = "New Attack", menuName = "Character Attack", order = 1)]
 public class AttackConfiguration : ScriptableObject
 {
     public bool isRanged = false;
