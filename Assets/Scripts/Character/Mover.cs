@@ -7,10 +7,16 @@ using System;
 public class Mover : MonoBehaviour, IActionable
 {
     [SerializeField] private SimpleAnimationSO animationMove;
-    readonly float movementDistance = 1;
+    private CharacterStats stats;
+
+    public void Awake()
+    {
+        stats = GetComponent<CharacterStats>();
+    }
+
     public void ExecuteAction(Action onFinished, bool right = true)
     {
-        float addedDistance = right ? movementDistance : -movementDistance;
+        float addedDistance = right ? stats.movementDistance : -stats.movementDistance;
         Vector3 endPosition = new Vector3(transform.position.x + addedDistance, transform.position.y, transform.position.z);
         transform.DOMove(endPosition, 1).SetEase(Ease.Linear).OnComplete(() => onFinished());
         GetComponent<SimpleAnimator>().SetAnimation(animationMove);

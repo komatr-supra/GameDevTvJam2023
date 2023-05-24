@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6716215010660212270}
   - component: {fileID: 6767576903386541405}
   - component: {fileID: 7573063452693712162}
+  - component: {fileID: 5124275539996336177}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -129,6 +130,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5124275539996336177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6716215010660212267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d57d38011835d41deb848c695dabb866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+  mana: 0
+  attack: 1
+  magic: 0
+  defense: 0
+  speed: 0
+  turnCounter: 0
 --- !u!1 &6716215010839852342
 GameObject:
   m_ObjectHideFlags: 0
