@@ -12,12 +12,18 @@ public class Move : Skill
 
     public override Sprite SkillSprite => attackConfiguration.skillSprite;
 
-    public override void ExecuteAction()
+    public override bool ExecuteAction()
     {
-        
+        //check if character can go
         Vector3 endPosition = new Vector3(actionHandler.transform.position.x + actionHandler.Direction, actionHandler.transform.position.y, actionHandler.transform.position.z);
+        if(Physics2D.OverlapPoint(endPosition))
+        {
+            Debug.Log("position is not free");
+            return false;
+        }
         actionHandler.transform.DOMove(endPosition, 1).SetEase(Ease.Linear).OnComplete(Finish);
         actionHandler.GetComponent<SimpleAnimator>().SetAnimation(characterStats.moveAnim);
+        return true;
     }
 
     private void Finish()

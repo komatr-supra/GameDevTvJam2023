@@ -14,11 +14,14 @@ public class ShootAttack : Skill
 
     public override Sprite SkillSprite => attackConfiguration.skillSprite;
 
-    public override void ExecuteAction()
+    public override bool ExecuteAction()
     {
+        //check if can shoot
+        //return false;
         actionHandler.GetComponent<SimpleAnimator>().SetAnimation(characterStats.shootAnim, () => Shoot(), () => AnimationFinished());
         attackFinished = false;
         animationFinished = false;
+        return true;
     }
 
     private void AnimationFinished()

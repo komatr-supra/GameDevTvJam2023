@@ -11,10 +11,12 @@ public class SwordAttack : Skill
 
     public override Sprite SkillSprite => attackConfiguration.skillSprite;
 
-    public override void ExecuteAction()
+    public override bool ExecuteAction()
     {
+        //check if can attack
         actionHandler.GetComponent<SimpleAnimator>().SetAnimation(characterStats.meleeAnim,
                 PerformAttack, onFinished);
+        return true;
     }
     private void PerformAttack()
     {

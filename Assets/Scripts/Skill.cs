@@ -21,5 +21,5 @@ public abstract class Skill
 
     
 
-    public abstract void ExecuteAction();
+    public abstract bool ExecuteAction();
 }

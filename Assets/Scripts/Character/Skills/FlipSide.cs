@@ -10,9 +10,18 @@ public class FlipSide : Skill
 
     public override Sprite SkillSprite => attackConfiguration.skillSprite;
 
-    public override void ExecuteAction()
+    public override bool ExecuteAction()
     {
+        //can flip?
+
         actionHandler.GetComponent<CharacterRotationHandler>().Rotate();
+
+        actionHandler.StartCoroutine(DelayClear());
+        return true;
+    }
+    private IEnumerator DelayClear()
+    {
+        yield return null;
         onFinished?.Invoke();
     }
 }

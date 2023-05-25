@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1edb222d27bb4024faa23140f979e822, type: 3}
+  m_Name: DeathPlayer
+  m_EditorClassIdentifier: 
+  frameArray:
+  - {fileID: -1304729296, guid: 582780420460baa4a91aba9e1194559d, type: 3}
+  - {fileID: 248387757, guid: 582780420460baa4a91aba9e1194559d, type: 3}
+  - {fileID: -1255140415, guid: 582780420460baa4a91aba9e1194559d, type: 3}
+  framesPerSecond: 7
+  isLoopable: 0
+  frameTrigger: -1

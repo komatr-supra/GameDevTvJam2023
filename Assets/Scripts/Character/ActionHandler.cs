@@ -17,8 +17,8 @@ public class ActionHandler : MonoBehaviour
     public int actionPoints;
     private bool isActive;
     private bool inProgress;
-    private bool endTurnFlag;
     public Action onTurnEnd;
+    public Action onActionPointsChange;
     private CharacterRotationHandler characterRotationHandler;
     public Action callback;
     public CharacterStats characterStats;
@@ -42,10 +42,10 @@ public class ActionHandler : MonoBehaviour
     public void PerformAction(Skill action)
     {
         if(!isActive || inProgress) return;
+        if(!action.ExecuteAction()) return;
         inProgress = true;
-        actionPoints--;
-        if(actionPoints <= 0) endTurnFlag = true;
-        action.ExecuteAction();
+        --actionPoints;
+               
     }
     public Skill[] GetSkills() => skills.ToArray();
     
@@ -54,9 +54,9 @@ public class ActionHandler : MonoBehaviour
     {
         inProgress = false;
         animator.SetAnimation(characterStats.idleAnim);
-        if(endTurnFlag)
-        {
-            endTurnFlag = false;            
+        onActionPointsChange?.Invoke();
+        if(actionPoints <= 0)
+        {           
             onTurnEnd?.Invoke();
         }
     }
