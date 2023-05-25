@@ -6,8 +6,8 @@ public class CharacterRotationHandler : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer spriteRenderer;
     public float Direction => spriteRenderer.flipX ? -1 : 1;
-    public void RotateToDirection(bool right)
+    public void Rotate()
     {
-        spriteRenderer.flipX = !right;
+        spriteRenderer.flipX = !spriteRenderer.flipX;
     }
 }

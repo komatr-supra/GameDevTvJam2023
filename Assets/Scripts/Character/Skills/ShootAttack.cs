@@ -8,15 +8,15 @@ public class ShootAttack : Skill
     private bool attackFinished;
     private bool animationFinished;
 
-    public ShootAttack(ActionHandler actionHandler) : base(actionHandler)
+    public ShootAttack(ActionHandler actionHandler, SkillConfiguration attackConfiguration) : base(actionHandler, attackConfiguration)
     {
     }
 
-    public override Sprite SkillSprite => characterStats.shootAttack.skillSprite;
+    public override Sprite SkillSprite => attackConfiguration.skillSprite;
 
     public override void ExecuteAction()
     {
-        actionHandler.GetComponent<SimpleAnimator>().SetAnimation(characterStats.shootAttack.aniation, () => Shoot(), () => AnimationFinished());
+        actionHandler.GetComponent<SimpleAnimator>().SetAnimation(characterStats.shootAnim, () => Shoot(), () => AnimationFinished());
         attackFinished = false;
         animationFinished = false;
     }
@@ -37,8 +37,8 @@ public class ShootAttack : Skill
     private void Shoot()
     {
         Vector3 spawnedPosition = new Vector3(actionHandler.transform.position.x + actionHandler.Direction * 0.5f, actionHandler.transform.position.y + 0.5f, 0);
-        var projectile = GameObject.Instantiate(characterStats.shootAttack.projectilePrefab, spawnedPosition, Quaternion.identity);
-        projectile.GetComponent<Projectile>().Init(actionHandler.Direction, characterStats.shootAttack.projectileSpeed, characterStats.shootAttack.damage, actionHandler.GetComponent<Collider2D>(), () => AttackFinished());
+        var projectile = GameObject.Instantiate(attackConfiguration.projectilePrefab, spawnedPosition, Quaternion.identity);
+        projectile.GetComponent<Projectile>().Init(actionHandler.Direction, attackConfiguration.projectileSpeed, characterStats.spellDamage, actionHandler.GetComponent<Collider2D>(), () => AttackFinished());
 
     }
 

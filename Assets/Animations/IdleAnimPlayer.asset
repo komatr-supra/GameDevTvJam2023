@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1edb222d27bb4024faa23140f979e822, type: 3}
-  m_Name: New SimpleAnimationSO
+  m_Name: IdleAnimPlayer
   m_EditorClassIdentifier: 
   frameArray:
   - {fileID: 1960278650, guid: 582780420460baa4a91aba9e1194559d, type: 3}

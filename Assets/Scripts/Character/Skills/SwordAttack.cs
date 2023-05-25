@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class SwordAttack : Skill
 {
-    public SwordAttack(ActionHandler actionHandler) : base(actionHandler)
+    public SwordAttack(ActionHandler actionHandler, SkillConfiguration attackConfiguration) : base(actionHandler, attackConfiguration)
     {
     }
 
-    public override Sprite SkillSprite => characterStats.swordAttack.skillSprite;
+    public override Sprite SkillSprite => attackConfiguration.skillSprite;
 
     public override void ExecuteAction()
     {
-        actionHandler.GetComponent<SimpleAnimator>().SetAnimation(characterStats.swordAttack.aniation,
+        actionHandler.GetComponent<SimpleAnimator>().SetAnimation(characterStats.meleeAnim,
                 PerformAttack, onFinished);
     }
     private void PerformAttack()
@@ -25,7 +25,7 @@ public class SwordAttack : Skill
         {
             if(item.collider.TryGetComponent<CharacterStats>(out var hitedCharacter))
             {
-                hitedCharacter.TakeDamage(this.characterStats.swordAttack.damage);
+                hitedCharacter.TakeDamage(attackConfiguration.damage);
                 VFXCreator.Instance.CreateEffect(item.point, VFXType.blood);
             }
         }

@@ -6,16 +6,12 @@ using UnityEngine;
 
 public class ActionHandler : MonoBehaviour
 {
-    [SerializeField] private Skills[] avaliableSkills;
-    //test
-    [SerializeField] private SimpleAnimationSO moveAnim;
-    [SerializeField] private SimpleAnimationSO idleAnim;
-    public SimpleAnimationSO MoveAnim => moveAnim;
-    //get char data
+    [SerializeField] private GameObject visualSelector;
+    
     int maxActionPoints = 2;
     //end test
     private SimpleAnimator animator;
-    private List<Skill> skills;  
+    public List<Skill> skills;  
      
     public float Direction => characterRotationHandler.Direction;
     public int actionPoints;
@@ -34,12 +30,12 @@ public class ActionHandler : MonoBehaviour
         callback = ProgressClear;
         skills = new();
         
-        
     }
     private void Start() {
-        foreach (var item in avaliableSkills)
+        foreach (var item in characterStats.skillConfigurations)
         {
-            skills.Add(SkillFactory.Instance.GetSkill(item, this));
+            var skill = SkillFactory.Instance.GetSkill(item.skill, this, item);
+            skills.Add(skill);
         }
     }
     
@@ -47,9 +43,9 @@ public class ActionHandler : MonoBehaviour
     {
         if(!isActive || inProgress) return;
         inProgress = true;
-        action.ExecuteAction();
         actionPoints--;
         if(actionPoints <= 0) endTurnFlag = true;
+        action.ExecuteAction();
     }
     public Skill[] GetSkills() => skills.ToArray();
     
@@ -57,7 +53,7 @@ public class ActionHandler : MonoBehaviour
     private void ProgressClear()
     {
         inProgress = false;
-        animator.SetAnimation(idleAnim);
+        animator.SetAnimation(characterStats.idleAnim);
         if(endTurnFlag)
         {
             endTurnFlag = false;            
@@ -67,6 +63,7 @@ public class ActionHandler : MonoBehaviour
     public void CharacterActive(bool isActive)
     {
         if(isActive) actionPoints = maxActionPoints;
+        visualSelector.SetActive(isActive);
         this.isActive = isActive;
     }
 

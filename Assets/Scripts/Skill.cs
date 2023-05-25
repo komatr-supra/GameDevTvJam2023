@@ -9,12 +9,14 @@ public abstract class Skill
     protected Action onFinished;
     protected CharacterStats characterStats;
     protected ActionHandler actionHandler;
-    public Skill(ActionHandler actionHandler)
+    protected SkillConfiguration attackConfiguration;
+    public Skill(ActionHandler actionHandler, SkillConfiguration attackConfiguration)
     {
         this.actionHandler = actionHandler;
         this.onFinished = actionHandler.callback;
         this.characterStats = actionHandler.characterStats;
         //Debug.Log("abstract constructor");
+        this.attackConfiguration = attackConfiguration;
     }
 
     
