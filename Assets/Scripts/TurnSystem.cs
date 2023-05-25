@@ -1,13 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TurnSystem : MonoBehaviour
 {
+    public static TurnSystem Instance;
+    public Action onTurnChanged;
     public ActionHandler[] characters;
-    private ActionHandler currentCharacter;
+    public ActionHandler currentCharacter;
     private int index;
-    void Start()
+    public Skill[] CharacterSkills => currentCharacter.GetSkills();
+    private void Awake()
+    {
+        if(Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
+    public void StartFight()
     {
         //this is start of the fight... so maybe another method and triggers to start fight?
         
@@ -15,6 +28,7 @@ public class TurnSystem : MonoBehaviour
         currentCharacter = characters[index];
         currentCharacter.CharacterActive(true);
         currentCharacter.onTurnEnd = NextCharacter;
+        onTurnChanged?.Invoke();
     }
     private void NextCharacter()
     {
@@ -24,6 +38,7 @@ public class TurnSystem : MonoBehaviour
         currentCharacter = characters[index];
         currentCharacter.CharacterActive(true);
         currentCharacter.onTurnEnd = NextCharacter;
+        onTurnChanged?.Invoke();
     }
     
 }

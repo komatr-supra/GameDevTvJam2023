@@ -15,20 +15,20 @@ public class PlayerInputHandler : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.D))
         {
-            var action = actionHandler.GetMoveAction();
-            if(!actionHandler.TryPerformAction(action)) return;
-            GetComponent<CharacterRotationHandler>().RotateToDirection(true);
+            //var action = actionHandler.GetMoveAction();
+            //if(!actionHandler.TryPerformAction(action)) return;
+            //GetComponent<CharacterRotationHandler>().RotateToDirection(true);
         }
         else if (Input.GetKeyDown(KeyCode.A))
         {
-            var action = actionHandler.GetMoveAction();
-            if(!actionHandler.TryPerformAction(action, false)) return;
-            GetComponent<CharacterRotationHandler>().RotateToDirection(false);
+            //var action = actionHandler.GetMoveAction();
+            //if(!actionHandler.TryPerformAction(action, false)) return;
+            //GetComponent<CharacterRotationHandler>().RotateToDirection(false);
         }
         if(Input.GetKeyDown(KeyCode.T))
         {
-            var action = actionHandler.GetAttackAction(attackConfiguration);
-            actionHandler.TryPerformAction(action);
+           var action = actionHandler.GetAction<ShootAttack>();
+        actionHandler.PerformAction(action);
         }
     }
     

@@ -10,54 +10,43 @@ public class ActionHandler : MonoBehaviour
 
     [SerializeField] private SimpleAnimationSO moveAnim;
     [SerializeField] private SimpleAnimationSO idleAnim;
-    [SerializeField] private SimpleAnimationSO shootAnim;
+    public SimpleAnimationSO MoveAnim => moveAnim;
     //get char data
     int maxActionPoints = 2;
     //end test
     private SimpleAnimator animator;
-    private List<IActionable> actions;    
-
+    private List<Skill> actions;  
+     
+    public float Direction => characterRotationHandler.Direction;
     public int actionPoints;
     private bool isActive;
     private bool inProgress;
     private bool endTurnFlag;
     public Action onTurnEnd;
+    private CharacterRotationHandler characterRotationHandler;
     private void Awake()
     {
+        characterRotationHandler = GetComponent<CharacterRotationHandler>();
         animator = GetComponent<SimpleAnimator>();
+        var charStat = GetComponent<CharacterStats>();
         actions = new();
-        var shootAttack = new Attack(this, shootConfig);
+        var shootAttack = new ShootAttack(this, ProgressClear, charStat);
         actions.Add(shootAttack);
-        var move = new Move(this, GetComponent<CharacterStats>(), moveAnim);
+        var move = new Move(this, ProgressClear, charStat);
         actions.Add(move);
     }
     
-    public bool TryPerformAction(IActionable action, bool right = true)
+    public void PerformAction(Skill action)
     {
-        if(!isActive) return false;
-        if(inProgress) return false;
+        if(!isActive || inProgress) return;
         inProgress = true;
-        action.ExecuteAction(ProgressClear, right);
+        action.ExecuteAction(ProgressClear);
         actionPoints--;
         if(actionPoints <= 0) endTurnFlag = true;
-        return true;
     }
-    public IActionable GetMoveAction()
-    {
-        foreach (var item in actions)
-        {
-            if(item is Move) return item;
-        }
-        return default;
-    }
-    public IActionable GetAttackAction(AttackConfiguration attackConfiguration)
-    {
-        foreach (var item in actions)
-        {
-            if(item is Attack) return item;
-        }
-        return default;
-    }
+    public Skill[] GetSkills() => actions.ToArray();
+    
+    
     private void ProgressClear()
     {
         inProgress = false;
@@ -72,5 +61,14 @@ public class ActionHandler : MonoBehaviour
     {
         if(isActive) actionPoints = maxActionPoints;
         this.isActive = isActive;
+    }
+
+    internal Skill GetAction<T>()
+    {
+        foreach (var item in actions)
+        {
+            if(item is T) return item;
+        }
+        return default;
     }
 }
