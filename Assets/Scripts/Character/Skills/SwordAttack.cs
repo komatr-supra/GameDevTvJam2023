@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class SwordAttack : Skill
 {
-    public SwordAttack(ActionHandler actionHandler, Action onFinished, CharacterStats characterStats) : base(actionHandler, onFinished, characterStats)
+    public SwordAttack(ActionHandler actionHandler) : base(actionHandler)
     {
     }
 
     public override Sprite SkillSprite => characterStats.swordAttack.skillSprite;
 
-    public override void ExecuteAction(Action onFinished)
+    public override void ExecuteAction()
     {
         actionHandler.GetComponent<SimpleAnimator>().SetAnimation(characterStats.swordAttack.aniation,
                 PerformAttack, onFinished);

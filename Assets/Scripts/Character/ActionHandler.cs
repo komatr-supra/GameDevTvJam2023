@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class ActionHandler : MonoBehaviour
 {
+    [SerializeField] private Skills[] avaliableSkills;
     //test
-
     [SerializeField] private SimpleAnimationSO moveAnim;
     [SerializeField] private SimpleAnimationSO idleAnim;
     public SimpleAnimationSO MoveAnim => moveAnim;
@@ -14,7 +15,7 @@ public class ActionHandler : MonoBehaviour
     int maxActionPoints = 2;
     //end test
     private SimpleAnimator animator;
-    private List<Skill> actions;  
+    private List<Skill> skills;  
      
     public float Direction => characterRotationHandler.Direction;
     public int actionPoints;
@@ -23,29 +24,34 @@ public class ActionHandler : MonoBehaviour
     private bool endTurnFlag;
     public Action onTurnEnd;
     private CharacterRotationHandler characterRotationHandler;
+    public Action callback;
+    public CharacterStats characterStats;
     private void Awake()
     {
         characterRotationHandler = GetComponent<CharacterRotationHandler>();
         animator = GetComponent<SimpleAnimator>();
-        var charStat = GetComponent<CharacterStats>();
-        actions = new();
-        var shootAttack = new ShootAttack(this, ProgressClear, charStat);
-        actions.Add(shootAttack);
-        var move = new Move(this, ProgressClear, charStat);
-        actions.Add(move);
-        var sword = new SwordAttack(this, ProgressClear, charStat);
-        actions.Add(sword);
+        characterStats = GetComponent<CharacterStats>();
+        callback = ProgressClear;
+        skills = new();
+        
+        
+    }
+    private void Start() {
+        foreach (var item in avaliableSkills)
+        {
+            skills.Add(SkillFactory.Instance.GetSkill(item, this));
+        }
     }
     
     public void PerformAction(Skill action)
     {
         if(!isActive || inProgress) return;
         inProgress = true;
-        action.ExecuteAction(ProgressClear);
+        action.ExecuteAction();
         actionPoints--;
         if(actionPoints <= 0) endTurnFlag = true;
     }
-    public Skill[] GetSkills() => actions.ToArray();
+    public Skill[] GetSkills() => skills.ToArray();
     
     
     private void ProgressClear()
@@ -66,7 +72,7 @@ public class ActionHandler : MonoBehaviour
 
     internal Skill GetAction<T>()
     {
-        foreach (var item in actions)
+        foreach (var item in skills)
         {
             if(item is T) return item;
         }

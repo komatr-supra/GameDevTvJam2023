@@ -8,16 +8,15 @@ public class ShootAttack : Skill
     private bool attackFinished;
     private bool animationFinished;
 
-    public ShootAttack(ActionHandler actionHandler, Action onFinished, CharacterStats characterStats) : base(actionHandler, onFinished, characterStats)
+    public ShootAttack(ActionHandler actionHandler) : base(actionHandler)
     {
     }
 
     public override Sprite SkillSprite => characterStats.shootAttack.skillSprite;
 
-    public override void ExecuteAction(Action onFinished)
+    public override void ExecuteAction()
     {
         actionHandler.GetComponent<SimpleAnimator>().SetAnimation(characterStats.shootAttack.aniation, () => Shoot(), () => AnimationFinished());
-        this.onFinished = onFinished;
         attackFinished = false;
         animationFinished = false;
     }
