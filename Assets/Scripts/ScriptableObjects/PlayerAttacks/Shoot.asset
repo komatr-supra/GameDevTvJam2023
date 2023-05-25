@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55cc37f3a82cd45ea9bb4af5f9f68ef3, type: 3}
   m_Name: Shoot
   m_EditorClassIdentifier: 
+  skillSprite: {fileID: 21300000, guid: 23934dc17642a470cabc256b043a9b25, type: 3}
   isAvailable: 1
   isRanged: 1
   damage: 1
@@ -19,3 +20,4 @@ MonoBehaviour:
   turnRecovery: 1
   aniation: {fileID: 11400000, guid: bcc003e0ed387f94283513f33b7dcf64, type: 2}
   projectilePrefab: {fileID: 699513803399393359, guid: b9b40e98af67de54da59e3307558de6b, type: 3}
+  projectileSpeed: 5

@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
+    //he can be changed behaviour of attacks
+    public AttackConfiguration shootAttack;
+    public AttackConfiguration swordAttack;
     public float health;
-    public float movementDistance;
-    public int turnCount;
     //sorry but no time to right implementation
     public void TakeDamage(int damage)
     {

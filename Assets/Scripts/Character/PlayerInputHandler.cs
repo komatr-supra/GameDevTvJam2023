@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class PlayerInputHandler : MonoBehaviour
 {
-    [SerializeField] private SimpleAnimationSO animationIdle;
-    [SerializeField] private AttackConfiguration attackConfiguration;
     private ActionHandler actionHandler;
 
     private void Awake()

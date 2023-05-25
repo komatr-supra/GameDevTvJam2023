@@ -12,11 +12,11 @@ public class ShootAttack : Skill
     {
     }
 
-    public override Sprite SkillSprite => actionHandler.shootConfig.skillSprite;
+    public override Sprite SkillSprite => characterStats.shootAttack.skillSprite;
 
     public override void ExecuteAction(Action onFinished)
     {
-        actionHandler.GetComponent<SimpleAnimator>().SetAnimation(actionHandler.shootConfig.aniation, () => Shoot(), () => AnimationFinished());
+        actionHandler.GetComponent<SimpleAnimator>().SetAnimation(characterStats.shootAttack.aniation, () => Shoot(), () => AnimationFinished());
         this.onFinished = onFinished;
         attackFinished = false;
         animationFinished = false;
@@ -38,8 +38,8 @@ public class ShootAttack : Skill
     private void Shoot()
     {
         Vector3 spawnedPosition = new Vector3(actionHandler.transform.position.x + actionHandler.Direction * 0.5f, actionHandler.transform.position.y + 0.5f, 0);
-        var projectile = GameObject.Instantiate(actionHandler.shootConfig.projectilePrefab, spawnedPosition, Quaternion.identity);
-        projectile.GetComponent<Projectile>().Init(actionHandler.Direction, actionHandler.shootConfig.projectileSpeed, actionHandler.shootConfig.damage, actionHandler.GetComponent<Collider2D>(), () => AttackFinished());
+        var projectile = GameObject.Instantiate(characterStats.shootAttack.projectilePrefab, spawnedPosition, Quaternion.identity);
+        projectile.GetComponent<Projectile>().Init(actionHandler.Direction, characterStats.shootAttack.projectileSpeed, characterStats.shootAttack.damage, actionHandler.GetComponent<Collider2D>(), () => AttackFinished());
 
     }
 

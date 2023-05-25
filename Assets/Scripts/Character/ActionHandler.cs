@@ -6,7 +6,6 @@ using UnityEngine;
 public class ActionHandler : MonoBehaviour
 {
     //test
-    public AttackConfiguration shootConfig;
 
     [SerializeField] private SimpleAnimationSO moveAnim;
     [SerializeField] private SimpleAnimationSO idleAnim;
@@ -34,6 +33,8 @@ public class ActionHandler : MonoBehaviour
         actions.Add(shootAttack);
         var move = new Move(this, ProgressClear, charStat);
         actions.Add(move);
+        var sword = new SwordAttack(this, ProgressClear, charStat);
+        actions.Add(sword);
     }
     
     public void PerformAction(Skill action)
