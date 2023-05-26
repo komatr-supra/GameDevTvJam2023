@@ -8,7 +8,7 @@ public class TurnSystem : MonoBehaviour
     public int roundNumber = 0;
     public static TurnSystem Instance;
     public Action onTurnChanged;
-    public ActionHandler[] characters;
+    public List<ActionHandler> characters;
     public ActionHandler currentCharacter;
     public Action<int> onRoundChanged;
     public Action onActionPOintChange;
@@ -22,6 +22,7 @@ public class TurnSystem : MonoBehaviour
             return;
         }
         Instance = this;
+        ActionHandler.onDead = CharacterDie;
     }
     private void NextRound()
     {
@@ -32,29 +33,47 @@ public class TurnSystem : MonoBehaviour
     {
         //this is start of the fight... so maybe another method and triggers to start fight?
         NextRound();
-        characters = FindObjectsOfType<ActionHandler>();
+        characters.AddRange(FindObjectsOfType<ActionHandler>());
         currentCharacter = characters[index];
         currentCharacter.CharacterActive(true);
-        currentCharacter.onTurnEnd = NextCharacter;
-        currentCharacter.onActionPointsChange = onActionPOintChange;
+        currentCharacter.onTurnEnd = EndTurn;
+        currentCharacter.onActionPointsChange = TurnCheck;
         onTurnChanged?.Invoke();
     }
-    public void NextCharacter()
+    public void EndTurn()
     {
+        StartCoroutine(NextCharacter());
+    }
+
+    private IEnumerator NextCharacter()
+    {
+        yield return new WaitForSeconds(1f);
         currentCharacter.onTurnEnd = null;
         currentCharacter.CharacterActive(false);
-        UpdateIndex();
+        if(!UpdateIndex()) 
+        {
+            Debug.Log("end fight");
+            yield break;
+        }
         currentCharacter = characters[index];
         currentCharacter.CharacterActive(true);
-        currentCharacter.onActionPointsChange = onActionPOintChange;
-        currentCharacter.onTurnEnd = NextCharacter;
+        currentCharacter.onActionPointsChange = TurnCheck;
+        currentCharacter.onTurnEnd = EndTurn;
         onTurnChanged?.Invoke();
         //NextRound();
     }
 
-    private void UpdateIndex()
+    private bool UpdateIndex()
     {
-        if(index + 1 < characters.Length)
+        //test!!!!!
+        if(characters.Count == 1)
+        {
+            index = 0;
+            return false;
+        }
+
+
+        if(index + 1 < characters.Count)
         {
             index++;
         }
@@ -63,5 +82,21 @@ public class TurnSystem : MonoBehaviour
             index = 0;
             NextRound();
         }
+        return true;
+    }
+    //check if combat is finished
+    private void TurnCheck()
+    {
+        onActionPOintChange?.Invoke();
+        //is player dead?
+
+        //test
+        
+    }
+    private void CharacterDie(ActionHandler diedCharacter)
+    {
+        Debug.Log("character deleted");
+        characters.Remove(diedCharacter);
+        Destroy(diedCharacter.gameObject);
     }
 }

@@ -17,6 +17,7 @@ public class CharacterStats : MonoBehaviour
     public Action onHealthChange;
     public int maxHealth = 4;
     public int health;
+    public Action onDIe;
     private void Start() {
         health = maxHealth;
         onHealthChange?.Invoke();
@@ -31,7 +32,6 @@ public class CharacterStats : MonoBehaviour
 
     private void Death()
     {
-        Debug.Log("character " + this + " died!");
-        GetComponent<SimpleAnimator>().SetAnimation(deathAnim, null, () => Destroy(gameObject));
+        GetComponent<SimpleAnimator>().SetAnimation(deathAnim, null, () => {onDIe?.Invoke();});
     }
 }

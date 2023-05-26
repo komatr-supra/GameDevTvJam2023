@@ -7,12 +7,11 @@ using UnityEngine;
 public class ActionHandler : MonoBehaviour
 {
     [SerializeField] private GameObject visualSelector;
-    
     int maxActionPoints = 2;
     //end test
     private SimpleAnimator animator;
     public List<Skill> skills;  
-     
+     public static Action<ActionHandler> onDead;
     public float Direction => characterRotationHandler.Direction;
     public int actionPoints;
     private bool isActive;
@@ -29,14 +28,19 @@ public class ActionHandler : MonoBehaviour
         characterStats = GetComponent<CharacterStats>();
         callback = ProgressClear;
         skills = new();
-        
+        characterStats.onDIe += CharacterDied;
     }
     private void Start() {
+
         foreach (var item in characterStats.skillConfigurations)
         {
             var skill = SkillFactory.Instance.GetSkill(item.skill, this, item);
             skills.Add(skill);
         }
+    }
+    private void CharacterDied()
+    {
+        onDead(this);
     }
     
     public void PerformAction(Skill action)
@@ -54,9 +58,9 @@ public class ActionHandler : MonoBehaviour
     {
         inProgress = false;
         animator.SetAnimation(characterStats.idleAnim);
-        onActionPointsChange?.Invoke();
+        onActionPointsChange?.Invoke();        
         if(actionPoints <= 0)
-        {           
+        {
             onTurnEnd?.Invoke();
         }
     }
