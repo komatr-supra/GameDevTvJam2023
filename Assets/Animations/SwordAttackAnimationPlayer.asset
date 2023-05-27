@@ -20,4 +20,4 @@ MonoBehaviour:
   - {fileID: 1163678468, guid: 582780420460baa4a91aba9e1194559d, type: 3}
   framesPerSecond: 8
   isLoopable: 0
-  frameTrigger: 2
+  frameTrigger: 1

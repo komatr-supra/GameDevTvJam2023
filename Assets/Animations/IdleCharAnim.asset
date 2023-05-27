@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1edb222d27bb4024faa23140f979e822, type: 3}
-  m_Name: DeathPlayer
+  m_Name: IdleCharAnim
   m_EditorClassIdentifier: 
   frameArray:
-  - {fileID: -1304729296, guid: 582780420460baa4a91aba9e1194559d, type: 3}
-  - {fileID: 248387757, guid: 582780420460baa4a91aba9e1194559d, type: 3}
-  - {fileID: -1255140415, guid: 582780420460baa4a91aba9e1194559d, type: 3}
-  framesPerSecond: 6
-  isLoopable: 0
+  - {fileID: 1421089064, guid: 8b849a9bc2f42684e8e7a177eeb67d74, type: 3}
+  - {fileID: -1055641098, guid: 8b849a9bc2f42684e8e7a177eeb67d74, type: 3}
+  - {fileID: 228540719, guid: 8b849a9bc2f42684e8e7a177eeb67d74, type: 3}
+  - {fileID: -38582102, guid: 8b849a9bc2f42684e8e7a177eeb67d74, type: 3}
+  framesPerSecond: 4
+  isLoopable: 1
   frameTrigger: -1

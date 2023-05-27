@@ -45,7 +45,7 @@ public class ActionHandler : MonoBehaviour
     
     public void PerformAction(Skill action)
     {
-        if(!isActive || inProgress) return;
+        if(!isActive || inProgress || actionPoints == 0) return;
         if(!action.ExecuteAction()) return;
         inProgress = true;
         --actionPoints;
