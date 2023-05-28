@@ -13,6 +13,7 @@ public class SwordAttack : Skill
 
     public override bool ExecuteAction()
     {
+        SFXPlayer.PlaySFX(actionHandler.transform.position, attackConfiguration.clip);
         //check if can attack
         actionHandler.GetComponent<SimpleAnimator>().SetAnimation(characterStats.meleeAnim,
                 PerformAttack, onFinished);

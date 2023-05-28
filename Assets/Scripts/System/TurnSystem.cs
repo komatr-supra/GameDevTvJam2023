@@ -2,9 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class TurnSystem : MonoBehaviour
 {
+    [SerializeField] private int nexSceneIndex = 1;
     public int roundNumber = 0;
     public static TurnSystem Instance;
     public Action onTurnChanged;
@@ -14,6 +15,14 @@ public class TurnSystem : MonoBehaviour
     public Action onActionPOintChange;
     private int index;
     public Skill[] CharacterSkills => currentCharacter.GetSkills();
+    
+
+
+    private void LoadNextScene()
+    {
+        SceneManager.LoadScene(nexSceneIndex);
+    }
+
     private void Awake()
     {
         if(Instance != null)
@@ -52,7 +61,7 @@ public class TurnSystem : MonoBehaviour
         currentCharacter.CharacterActive(false);
         if(!UpdateIndex()) 
         {
-            Debug.Log("end fight");
+            LoadNextScene();
             yield break;
         }
         currentCharacter = characters[index];

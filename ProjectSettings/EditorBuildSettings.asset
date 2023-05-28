@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: f00e679352bd01045b0793beae6a6ffa
   - enabled: 1
-    path: Assets/Scenes/Level.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/Scenes/komatr test.unity
+    guid: 44edfac6170c5ef438cd00181ee393b1
+  - enabled: 1
+    path: Assets/Scenes/komatr test 1.unity
+    guid: f99976ee0b753744d8f0d2ebaddc356b
   m_configObjects: {}

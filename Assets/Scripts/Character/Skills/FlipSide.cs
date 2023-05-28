@@ -13,7 +13,7 @@ public class FlipSide : Skill
     public override bool ExecuteAction()
     {
         //can flip?
-
+        SFXPlayer.PlaySFX(actionHandler.transform.position, attackConfiguration.clip);
         actionHandler.GetComponent<CharacterRotationHandler>().Rotate();
 
         actionHandler.StartCoroutine(DelayClear());

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    [SerializeField] private AudioClip explosion;
     private float maxLifetime = 3f;
     private float direction;
     private float speed;
@@ -33,6 +34,7 @@ public class Projectile : MonoBehaviour
         {
             characterStats.TakeDamage(damage);
             VFXCreator.Instance.CreateEffect(transform.position, VFXType.explosion);
+            SFXPlayer.PlaySFX(transform.position, explosion);
             Despawn();
         }
     }

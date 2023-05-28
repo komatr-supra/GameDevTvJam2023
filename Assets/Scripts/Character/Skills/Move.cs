@@ -21,6 +21,7 @@ public class Move : Skill
             Debug.Log("position is not free");
             return false;
         }
+        SFXPlayer.PlaySFX(actionHandler.transform.position, attackConfiguration.clip);
         actionHandler.transform.DOMove(endPosition, 1).SetEase(Ease.Linear).OnComplete(Finish);
         actionHandler.GetComponent<SimpleAnimator>().SetAnimation(characterStats.moveAnim);
         return true;

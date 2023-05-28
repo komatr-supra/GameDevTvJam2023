@@ -18,6 +18,7 @@ public class ShootAttack : Skill
     {
         //check if can shoot
         //return false;
+        SFXPlayer.PlaySFX(actionHandler.transform.position, attackConfiguration.clip);
         actionHandler.GetComponent<SimpleAnimator>().SetAnimation(characterStats.shootAnim, () => Shoot(), () => AnimationFinished());
         attackFinished = false;
         animationFinished = false;
